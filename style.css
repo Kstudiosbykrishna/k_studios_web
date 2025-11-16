@@ -458,3 +458,69 @@ footer{
   nav ul { gap: 6px !important; }
   .btn { padding: 10px 12px !important; }
 }
+
+/* ===== Mobile fix: prevent horizontal overflow + stack hero ===== */
+
+/* safety: allow elements to shrink instead of forcing viewport width */
+* { min-width: 0; }
+
+/* prevent any horizontal scrolling caused by large elements */
+html, body, .page-bg, .wrap {
+  overflow-x: hidden !important;
+}
+
+/* keep the logo 90x90 exactly (user requested) */
+.logo {
+  width: 90px !important;
+  height: 90px !important;
+  min-width: 90px !important;
+  min-height: 90px !important;
+}
+.logo img { object-fit: contain !important; width:100%!important; height:100%!important; }
+
+/* Make sure slides never grow wider than their container */
+.slides, .slide {
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Force the hero to stack (promo above slider) on small / narrow viewports */
+@media (max-width: 900px) {
+  /* reduce outer paddings a bit on small screens */
+  .page-bg { padding-left: 12px !important; padding-right: 12px !important; }
+  .wrap { max-width: 100% !important; width: calc(100% - 24px) !important; padding: 12px !important; border-radius:12px !important; }
+
+  /* hero becomes single column; promo first, slider second */
+  .hero {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    height: auto !important;
+    align-items: start !important;
+  }
+  .promo { order: 1 !important; width: 100% !important; }
+  .slider { order: 2 !important; width: 100% !important; min-height: 34vh !important; }
+
+  /* ensure slides fill the visible area and don't overflow right */
+  .slides { transform: translateX(0) !important; width: 100% !important; }
+  .slide { min-width: 100% !important; height: auto !important; }
+
+  /* caption and dots: keep inside the card and readable */
+  .caption { position: relative !important; left: auto !important; transform: none !important; bottom: auto !important; margin-top: 12px !important; max-width: 100% !important; }
+  .dots { left: 50% !important; transform: translateX(-50%) !important; bottom: 8px !important; }
+
+  /* nav: wrap into multiple lines if necessary, but keep logo intact */
+  header { align-items: center !important; display: flex !important; flex-wrap: wrap !important; gap: 10px !important; }
+  nav ul { width: 100% !important; justify-content: center !important; gap: 8px !important; flex-wrap: wrap !important; margin-top: 6px !important; padding: 0; }
+  nav a { white-space: normal !important; text-align: center !important; padding: 8px 10px !important; }
+
+  /* buttons go full width for easier tapping */
+  .btn { width: 100% !important; max-width: none !important; padding: 12px 14px !important; }
+  .btn.secondary { width: 100% !important; }
+
+  /* small fixes for layout blocks */
+  .grid3 { grid-template-columns: 1fr !important; }
+  .highlights { grid-template-columns: 1fr !important; }
+  .about { grid-template-columns: 1fr !important; }
+  .lead-form, .contact-info { min-width: 100% !important; padding: 8px 0 !important; }
+}

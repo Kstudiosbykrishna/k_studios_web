@@ -395,3 +395,66 @@ footer{
   .brand-title { font-size: 48px; }
   .wrap { max-width: 1400px; }
 }
+
+/* ------- Mobile-safe override (paste at end of style.css) ------- */
+
+/* Keep logo a fixed nice size on all viewports (user requested) */
+.logo {
+  width: 90px !important;
+  height: 90px !important;
+  min-width: 90px !important;
+  min-height: 90px !important;
+  border-radius: 18px !important;
+}
+.logo img {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Make header stack but preserve logo size */
+@media (max-width: 700px) {
+  header {
+    display: flex !important;
+    flex-direction: row !important; /* keep logo + brand in one row */
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 12px !important;
+    height: auto !important;
+  }
+
+  /* shrink the title text instead of the logo */
+  .brand-title { font-size: 30px !important; line-height: 1; }
+  .brand-sub { display: none; } /* hide subtitle to free space */
+  
+  /* nav becomes a wrap row and centers below or to the right depending on width */
+  nav ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin-top: 6px !important;
+    width: 100%;
+    padding: 0;
+  }
+  nav a { font-size: 0.92rem !important; padding: 8px 10px !important; }
+
+  /* Ensure hero stacks and buttons are full width on small screens */
+  .hero { grid-template-columns: 1fr !important; gap: 12px !important; padding: 12px !important; }
+  .promo { padding: 12px !important; }
+  .btn { width: 100% !important; max-width: none !important; }
+  .btn.secondary { width: 100% !important; }
+
+  /* Keep caption readable and avoid overflow */
+  .caption { max-width: 95% !important; left: 50%; transform: translateX(-50%) !important; bottom: 12px !important; padding: 12px !important; font-size: 15px !important; }
+
+  /* prevent any element from forcing horizontal scroll */
+  .wrap, .page-bg, .hero, .slides, .slide { overflow-x: hidden !important; }
+}
+
+/* extra tiny fix for very small phones */
+@media (max-width: 380px) {
+  .brand-title { font-size: 22px !important; }
+  nav ul { gap: 6px !important; }
+  .btn { padding: 10px 12px !important; }
+}

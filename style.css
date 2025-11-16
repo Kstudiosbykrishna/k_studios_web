@@ -79,11 +79,11 @@ header{
 }
 /* Make logo image scale nicely inside the container */
 .logo img{
-  width:100%;
-  height:100%;
+  width:130%;
+  height:180%;
   object-fit:cover;
   transform: scale(1.35);
-  
+
 }
 .brand-title {
   font-size: 44px;

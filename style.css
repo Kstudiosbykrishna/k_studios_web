@@ -80,7 +80,7 @@ header{
 /* Make logo image scale nicely inside the container */
 .logo img{
   width:100%;
-  height:100%;
+  height:150%;
   object-fit:contain;
   display:block;
 }
